@@ -1,80 +1,66 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
+<!DOCTYPE html>
+
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
-	<title></title>
-	<meta name="generator" content="LibreOffice 6.1.5.2 (Linux)"/>
-	<meta name="created" content="00:00:00"/>
-	<meta name="changed" content="00:00:00"/>
-	<style type="text/css">
-		@page { size: 8.27in 11.69in; margin: 0.79in }
-		p { margin-bottom: 0.1in; line-height: 115%; background: transparent }
-		pre { font-family: "Liberation Mono", monospace; font-size: 10pt; background: transparent }
-	</style>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>AR project template</title>
+    <!-- Додаємо необхідні бібліотеки -->
+    <script src="js/three.js"></script>
+    <script src="js/tween.umd.js"></script>
+    <script src='loaders/GLTFLoader.js'></script>
+    <script src='loaders/GLTF2Loader.js'></script>
+    <script src='loaders/MTLLoader.js'></script>
+    <script src='loaders/OBJLoader.js'></script>
+    <!-- Додаємо jsartookit -->
+    <script src="jsartoolkit5/artoolkit.min.js"></script>
+    <script src="jsartoolkit5/artoolkit.api.js"></script>
+    <!-- Додаємо threex.artoolkit -->
+    <script src="threex/threex-artoolkitsource.js"></script>
+    <script src="threex/threex-artoolkitcontext.js"></script>
+    <script src="threex/threex-arbasecontrols.js"></script>
+    <script src="threex/threex-armarkercontrols.js"></script>
 </head>
-<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><pre>&lt;!DOCTYPE html&gt;
 
-&lt;head&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0&quot;&gt;
-    &lt;title&gt;AR project template&lt;/title&gt;
-    &lt;!-- &ETH;�&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&frac12;&ETH;&micro;&ETH;&frac34;&ETH;&plusmn;&Ntilde;�&Ntilde;�&ETH;&acute;&ETH;&frac12;&Ntilde;� &ETH;&plusmn;&Ntilde;�&ETH;&plusmn;&ETH;&raquo;&Ntilde;�&ETH;&frac34;&Ntilde;�&ETH;&micro;&ETH;&ordm;&ETH;&cedil; --&gt;
-    &lt;script src=&quot;js/three.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;js/tween.umd.js&quot;&gt;&lt;/script&gt;
-    &lt;script src='loaders/GLTFLoader.js'&gt;&lt;/script&gt;
-    &lt;script src='loaders/GLTF2Loader.js'&gt;&lt;/script&gt;
-    &lt;script src='loaders/MTLLoader.js'&gt;&lt;/script&gt;
-    &lt;script src='loaders/OBJLoader.js'&gt;&lt;/script&gt;
-    &lt;!-- &ETH;�&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; jsartookit --&gt;
-    &lt;script src=&quot;jsartoolkit5/artoolkit.min.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;jsartoolkit5/artoolkit.api.js&quot;&gt;&lt;/script&gt;
-    &lt;!-- &ETH;�&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; threex.artoolkit --&gt;
-    &lt;script src=&quot;threex/threex-artoolkitsource.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;threex/threex-artoolkitcontext.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;threex/threex-arbasecontrols.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;threex/threex-armarkercontrols.js&quot;&gt;&lt;/script&gt;
-&lt;/head&gt;
+<body style='margin : 0px; overflow: hidden; font-family: Monospace; user-select: none; pointer-events: none;'>
 
-&lt;body style='margin : 0px; overflow: hidden; font-family: Monospace; user-select: none; pointer-events: none;'&gt;
-
-    &lt;div id=&quot;access&quot; style=&quot;top: 0; left: 0; right:0; bottom: 0; background: #000; position: absolute; user-select: all; pointer-events: all;&quot;&gt;
-        &lt;div id=&quot;text-wrapper&quot; style=&quot;top: 50%; left: 50%; position: absolute; color: #fff; transform: translate(-50%, -50%); text-align: center;
+    <div id="access" style="top: 0; left: 0; right:0; bottom: 0; background: #000; position: absolute; user-select: all; pointer-events: all;">
+        <div id="text-wrapper" style="top: 50%; left: 50%; position: absolute; color: #fff; transform: translate(-50%, -50%); text-align: center;
                 text-transform: uppercase; font-family: Arial, Helvetica, sans-serif; font-weight: 400; line-height: 1.5em; font-size: large; white-space: nowrap;
                 user-select: none; pointer-events: none;
-            &quot;&gt;
+            ">
             Press here
-            &lt;br&gt;
+            <br>
             to enter the experience
-        &lt;/div&gt;
-    &lt;/div&gt;
+        </div>
+    </div>
 
-    &lt;div id=&quot;loader&quot; style=&quot;position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: #fff; pointer-events: none; user-select: none;
-        transition: all .2s linear; display: none;&quot;&gt;
-        &lt;div style=&quot;left: 50%; top: 50%; position: absolute; transform: translate(-50%, -50%); text-align: center; width: 130px; height: 165px;
-            font-family: Arial, Helvetica, sans-serif; font-weight: 400; line-height: 1.5em; font-size: large;&quot; class=&quot;spinner-wrapper&quot;&gt;
-            &lt;img style=&quot;width: 130px; height: 130px; pointer-events: none; user-select: none;&quot; src=&quot;data/spin.gif&quot; alt=&quot;spin gif&quot;&gt;
-            &lt;br&gt;
+    <div id="loader" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: #fff; pointer-events: none; user-select: none;
+        transition: all .2s linear; display: none;">
+        <div style="left: 50%; top: 50%; position: absolute; transform: translate(-50%, -50%); text-align: center; width: 130px; height: 165px;
+            font-family: Arial, Helvetica, sans-serif; font-weight: 400; line-height: 1.5em; font-size: large;" class="spinner-wrapper">
+            <img style="width: 130px; height: 130px; pointer-events: none; user-select: none;" src="data/spin.gif" alt="spin gif">
+            <br>
             Loading...
-        &lt;/div&gt;
-    &lt;/div&gt;
+        </div>
+    </div>
 
-    &lt;script&gt;
+    <script>
         const access = document.getElementById('access');
         const loader = document.getElementById('loader');
 
         function initiateExperience() {
-            // &ETH;�&ETH;&sup3;&ETH;&frac34;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&sup3;&ETH;&raquo;&ETH;&frac34;&ETH;&plusmn;&ETH;&deg;&ETH;&raquo;&Ntilde;�&ETH;&frac12;&Ntilde;� &ETH;&middot;&ETH;&frac14;&Ntilde;�&ETH;&frac12;&ETH;&frac12;&Ntilde;�
+            // Оголошуємо глобальні змінні
             var scene, camera, renderer, clock, deltaTime, totalTime;
 
             var patternIdOffset = 10000000000
 
-            // &ETH;�&ETH;&frac14;&Ntilde;�&ETH;&frac12;&ETH;&frac12;&Ntilde;� &ETH;&frac12;&ETH;&micro;&ETH;&frac34;&ETH;&plusmn;&Ntilde;�&Ntilde;�&ETH;&acute;&ETH;&frac12;&Ntilde;� &ETH;&acute;&ETH;&raquo;&Ntilde;� &Ntilde;�&ETH;&frac34;&ETH;&plusmn;&ETH;&frac34;&Ntilde;�&ETH;&cedil; AR &ETH;&frac34;&Ntilde;�&ETH;&frac34;&Ntilde;�&ETH;&micro;&ETH;&frac12;&ETH;&frac12;&Ntilde;�
+            // Змінні необхідні для роботи AR оточення
             var arToolkitSource, arToolkitContext;
 
-            // &ETH;�&ETH;&frac34;&ETH;&raquo;&ETH;&frac34;&ETH;&sup2;&ETH;&frac12;&ETH;&cedil;&ETH;&sup1; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&sup1;&ETH;&frac12;&ETH;&micro;&Ntilde;�, &ETH;&acute;&ETH;&frac34; &Ntilde;�&ETH;&ordm;&ETH;&frac34;&ETH;&sup3;&ETH;&frac34; &Ntilde;�&ETH;&sup2;&Ntilde;�&ETH;&sup1;&ETH;&acute;&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&sup2;&Ntilde;�&Ntilde;� 3D &ETH;&frac34;&ETH;&plusmn;'&Ntilde;�&ETH;&ordm;&Ntilde;�&ETH;&cedil; &ETH;&acute;&ETH;&raquo;&Ntilde;� &ETH;&iquest;&Ntilde;�&ETH;&frac34;&ETH;&sup3;&Ntilde;�&ETH;&deg;&ETH;&frac14;&ETH;&cedil;
+            // Головний контейнер, до якого увійдуть всі 3D об'єкти для програми
             var markerRoot, mainContainer;
 
-            // &ETH;�&ETH;&ordm;&Ntilde;�&ETH;&micro;&ETH;&frac14;&ETH;&cedil;&ETH;&sup1; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &ETH;&acute;&ETH;&raquo;&Ntilde;� &ETH;&middot;&ETH;&plusmn;&ETH;&micro;&Ntilde;�&Ntilde;�&ETH;&sup3;&ETH;&deg;&ETH;&frac12;&ETH;&frac12;&Ntilde;� &ETH;&sup2;&Ntilde;�&Ntilde;�&ETH;&frac34;&ETH;&sup3;&ETH;&frac34; &ETH;&deg;&Ntilde;�&ETH;&acute;&Ntilde;�&ETH;&frac34; &Ntilde;�&ETH;&deg; &ETH;&sup2;&Ntilde;�&ETH;&acute;&ETH;&micro;&ETH;&frac34; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;�&Ntilde;�, &Ntilde;�&ETH;&ordm;&ETH;&cedil;&ETH;&sup1; &ETH;&plusmn;&Ntilde;�&ETH;&acute;&ETH;&micro;
-            // &ETH;&middot;&ETH;&deg;&ETH;&iquest;&Ntilde;�&Ntilde;�&ETH;&micro;&ETH;&frac12;&ETH;&cedil;&ETH;&sup1; &ETH;&frac12;&ETH;&deg;&Ntilde;�&ETH;&cedil;&Ntilde;�&ETH;&ordm;&ETH;&deg;&ETH;&frac12;&ETH;&frac12;&Ntilde;�&ETH;&frac14; &ETH;&frac12;&ETH;&deg; &ETH;&micro;&ETH;&ordm;&Ntilde;�&ETH;&deg;&ETH;&frac12; &Ntilde;�&ETH;&frac14;&ETH;&deg;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac34;&ETH;&frac12;&ETH;&deg;
+            // Окремий масив для зберігання всього аудіо та відео контенту, який буде
+            // запущений натисканням на екран смартфона
             var audioContent = [];
 
             var contentPromises = [];
@@ -87,28 +73,28 @@
 
             let controller;
 
-            // &ETH;�&ETH;&frac12;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&deg;&ETH;&raquo;&Ntilde;�&ETH;&middot;&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &Ntilde;�&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;� &Ntilde;�&ETH;&deg; &ETH;&middot;&ETH;&deg;&ETH;&iquest;&Ntilde;�&Ntilde;�&ETH;&ordm;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &Ntilde;�&ETH;&cedil;&ETH;&ordm;&ETH;&raquo; &ETH;&deg;&ETH;&frac12;&Ntilde;�&ETH;&frac14;&ETH;&deg;&Ntilde;�&Ntilde;�&Ntilde;�
+            // Ініціалізуємо сцену та запускаємо цикл анімації
             initialize();
             animate();
 
             function initialize() {
-                // &ETH;�&ETH;&sup3;&ETH;&frac34;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &Ntilde;�&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;�, &ETH;&sup2; &Ntilde;�&ETH;&ordm;&Ntilde;� &ETH;&acute;&ETH;&frac34;&ETH;&acute;&ETH;&deg;&ETH;&frac14;&ETH;&frac34; &ETH;&sup3;&ETH;&frac34;&ETH;&raquo;&ETH;&frac34;&ETH;&sup2;&ETH;&frac12;&ETH;&cedil;&ETH;&sup1; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&sup1;&ETH;&frac12;&ETH;&micro;&Ntilde;� &ETH;&middot; &Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&deg; 3D &ETH;&frac34;&ETH;&plusmn;'&Ntilde;�&ETH;&ordm;&Ntilde;�&ETH;&deg;&ETH;&frac14;&ETH;&cedil;.
+                // Оголошуємо сцену, в яку додамо головний контейнер з усіма 3D об'єктами.
                 scene = new THREE.Scene();
 
-                // &ETH;�&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &Ntilde;�&ETH;&sup2;&Ntilde;�&Ntilde;�&ETH;&raquo;&ETH;&frac34; &ETH;&frac12;&ETH;&deg; &Ntilde;�&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;�, &Ntilde;�&ETH;&frac12;&ETH;&deg;&ETH;&ordm;&Ntilde;�&ETH;&micro; &ETH;&plusmn;&ETH;&deg;&ETH;&middot;&ETH;&frac34;&ETH;&sup2;&Ntilde;� &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&micro;&Ntilde;�&Ntilde;�&ETH;&deg;&ETH;&raquo;&ETH;&cedil; &ETH;&plusmn;&Ntilde;�&ETH;&acute;&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&iquest;&Ntilde;�&ETH;&frac34;&Ntilde;�&Ntilde;�&ETH;&frac34; &Ntilde;�&ETH;&frac34;&Ntilde;�&ETH;&frac12;&ETH;&cedil;&ETH;&frac14;&ETH;&cedil;.
-                // &Ntilde;�.&ETH;&ordm;. &Ntilde;�&ETH;&frac14; &ETH;&frac12;&ETH;&micro;&ETH;&frac14;&ETH;&deg; &Ntilde;�&ETH;&frac34;&ETH;&sup3;&ETH;&frac34; &ETH;&sup2;&Ntilde;�&ETH;&acute;&ETH;&frac34;&ETH;&plusmn;&Ntilde;�&ETH;&deg;&ETH;&para;&ETH;&deg;&Ntilde;�&ETH;&cedil;, &ETH;&middot;&ETH;&sup2;&ETH;&micro;&Ntilde;�&ETH;&frac12;&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&acute;&ETH;&frac34; &ETH;&acute;&ETH;&frac34;&ETH;&ordm;&Ntilde;�&ETH;&frac14;&ETH;&micro;&ETH;&frac12;&Ntilde;�&ETH;&deg;&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&plusmn;&Ntilde;�&ETH;&plusmn;&ETH;&raquo;&Ntilde;�&ETH;&frac34;&Ntilde;�&ETH;&micro;&ETH;&ordm;&ETH;&cedil; three.js, &Ntilde;�&ETH;&frac34;&ETH;&plusmn;
-                // &ETH;&iquest;&Ntilde;�&ETH;&frac34;&Ntilde;�&ETH;&cedil;&Ntilde;�&ETH;&deg;&Ntilde;�&ETH;&cedil; &ETH;&iquest;&Ntilde;�&ETH;&frac34; &ETH;&acute;&ETH;&frac34;&ETH;&ordm;&ETH;&raquo;&ETH;&deg;&ETH;&acute;&ETH;&frac12;&Ntilde;� &Ntilde;�&ETH;&frac34;&ETH;&plusmn;&ETH;&frac34;&Ntilde;�&Ntilde;� &ETH;&ordm;&ETH;&raquo;&ETH;&deg;&Ntilde;�&Ntilde;� Material
+                // Додаємо світло на сцену, інакше базові матеріали будуть просто чорними.
+                // т.к. їм нема чого відображати, зверніться до документації бібліотеки three.js, щоб
+                // прочитати про докладну роботу класу Material
                 let ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
                 scene.add(ambientLight);
 
-                // &ETH;�&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&ordm;&ETH;&deg;&ETH;&frac14;&ETH;&micro;&Ntilde;�&Ntilde;�, &Ntilde;�&ETH;&ordm;&ETH;&deg; &ETH;&plusmn;&Ntilde;�&ETH;&acute;&ETH;&micro; &ETH;&iquest;&Ntilde;�&ETH;&middot;&ETH;&frac12;&Ntilde;�&Ntilde;�&ETH;&micro; &ETH;&iquest;&ETH;&micro;&Ntilde;�&ETH;&micro;&ETH;&iquest;&Ntilde;�&ETH;&cedil;&ETH;&middot;&ETH;&frac12;&ETH;&deg;&Ntilde;�&ETH;&micro;&ETH;&frac12;&ETH;&deg; &ETH;&frac12;&ETH;&deg; &ETH;&ordm;&ETH;&deg;&ETH;&frac14;&ETH;&micro;&Ntilde;�&Ntilde;� &Ntilde;�&ETH;&frac14;&ETH;&deg;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac34;&ETH;&frac12;&ETH;&deg;
+                // Додаємо камеру, яка буде пізніше перепризначена на камеру смартфона
                 camera = new THREE.Camera();
                 scene.add(camera);
                 const listener = new THREE.AudioListener();
                 camera.add(listener);
                 const audioLoader = new THREE.AudioLoader();
 
-                // &ETH;�&ETH;&sup3;&ETH;&frac34;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &Ntilde;�&Ntilde;�&ETH;&deg;&ETH;&frac12;&ETH;&acute;&ETH;&deg;&Ntilde;�&Ntilde;�&ETH;&frac12;&ETH;&cedil;&ETH;&sup1; &Ntilde;�&ETH;&micro;&ETH;&frac12;&ETH;&acute;&ETH;&micro;&Ntilde;�&ETH;&micro;&Ntilde;� &Ntilde;� &ETH;&acute;&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&sup1;&ETH;&frac34;&ETH;&sup3;&ETH;&frac34; &ETH;&acute;&ETH;&frac34; &Ntilde;�&ETH;&micro;&ETH;&sup3;&ETH;&deg; body html &ETH;&acute;&ETH;&frac34;&ETH;&ordm;&Ntilde;�&ETH;&frac14;&ETH;&micro;&ETH;&frac12;&Ntilde;�&ETH;&deg;
+                // Оголошуємо стандартний рендерер і додаємо його до тега body html документа
                 renderer = new THREE.WebGLRenderer({
                     antialias: true,
                     alpha: true
@@ -128,7 +114,7 @@
                     sourceType: 'webcam',
                 });
 
-                // &ETH;&curren;&Ntilde;�&ETH;&frac12;&ETH;&ordm;&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&iquest;&ETH;&micro;&Ntilde;�&ETH;&micro;&Ntilde;�&ETH;&micro;&ETH;&frac12;&ETH;&acute;&ETH;&micro;&Ntilde;�&Ntilde;�&Ntilde;� AR &Ntilde;�&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;� &ETH;&iquest;&Ntilde;�&ETH;&acute; &ETH;&iquest;&ETH;&frac34;&Ntilde;�&ETH;&frac34;&Ntilde;�&ETH;&frac12;&ETH;&cedil;&ETH;&sup1; &Ntilde;�&ETH;&frac34;&ETH;&middot;&ETH;&frac14;&Ntilde;�&Ntilde;� canvas
+                // Функція перерендерує AR сцену під поточний розмір canvas
                 function onResize() {
                     arToolkitSource.onResize()
                     arToolkitSource.copySizeTo(renderer.domElement)
@@ -137,65 +123,65 @@
                     }
                 }
 
-                // &ETH;�&ETH;&cedil;&ETH;&ordm;&ETH;&raquo;&ETH;&cedil;&ETH;&ordm;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &Ntilde;�&Ntilde;�&ETH;&frac12;&ETH;&ordm;&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&iquest;&Ntilde;�&ETH;&acute; &Ntilde;�&ETH;&deg;&Ntilde;� &Ntilde;�&ETH;&frac12;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&deg;&ETH;&raquo;&Ntilde;�&ETH;&middot;&ETH;&deg;&Ntilde;�&Ntilde;�&Ntilde;� AR
+                // Викликаємо функцію під час ініціалізації AR
                 arToolkitSource.init(function onReady() {
                     onResize()
                 });
 
-                // &ETH;�&ETH;&cedil;&ETH;&ordm;&ETH;&raquo;&ETH;&cedil;&ETH;&ordm;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &Ntilde;�&Ntilde;�&ETH;&frac12;&ETH;&ordm;&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&frac12;&ETH;&deg; resize &Ntilde;�&ETH;&sup2;&ETH;&micro;&ETH;&frac12;&Ntilde;� &ETH;&sup2;&ETH;&micro;&ETH;&plusmn;-&Ntilde;�&Ntilde;�&ETH;&frac34;&Ntilde;�&Ntilde;�&ETH;&frac12;&ETH;&ordm;&ETH;&cedil;
+                // Викликаємо функцію на resize івент веб-сторінки
                 window.addEventListener('resize', function () {
                     onResize()
                 });
 
-                // &ETH;�&ETH;&frac12;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&deg;&ETH;&raquo;&Ntilde;�&ETH;&middot;&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; AR &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&ordm;&Ntilde;�&Ntilde;� &ETH;&iquest;&Ntilde;�&ETH;&acute; &ETH;&ordm;&ETH;&deg;&ETH;&frac14;&ETH;&micro;&Ntilde;�&Ntilde;�, &ETH;&iquest;&ETH;&deg;&Ntilde;�&ETH;&micro;&Ntilde;�&ETH;&frac12;&ETH;&cedil;, &ETH;&plusmn;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&frac34;&ETH;&acute; 3&Ntilde;�3
+                // Ініціалізуємо AR контекст під камеру, патерни, баркод 3х3
                 arToolkitContext = new THREEx.ArToolkitContext({
                     cameraParametersUrl: 'data/camera_para.dat',
                     detectionMode: 'mono_and_matrix',
-                    matrixCodeType: &quot;3x3&quot;,
+                    matrixCodeType: "3x3",
                     maxDetectionRate: 60,
                     canvasWidth: 640,
                     canvasHeight: 480
                 });
 
-                // &ETH;�&Ntilde;�&ETH;&acute;&ETH;&frac12;&ETH;&frac34;&ETH;&sup2;&ETH;&raquo;&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&frac14;&ETH;&deg;&Ntilde;�&Ntilde;�&ETH;&cedil;&Ntilde;�&Ntilde;� &ETH;&iquest;&Ntilde;�&ETH;&frac34;&ETH;&micro;&ETH;&ordm;&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&ordm;&ETH;&deg;&ETH;&frac14;&ETH;&micro;&Ntilde;�&ETH;&cedil; &ETH;&iquest;&Ntilde;�&Ntilde;�&ETH;&raquo;&Ntilde;� &ETH;&middot;&ETH;&deg;&ETH;&ordm;&Ntilde;�&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&frac12;&ETH;&frac12;&Ntilde;� &Ntilde;�&ETH;&frac12;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&deg;&ETH;&raquo;&Ntilde;�&ETH;&middot;&ETH;&deg;&Ntilde;�&Ntilde;�&Ntilde;�
+                // Відновлюємо матрицю проекції камери після закінчення ініціалізації
                 arToolkitContext.init(function onCompleted() {
                     camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
                 });
 
-                // &ETH;&iexcl;&Ntilde;�&ETH;&sup2;&ETH;&frac34;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&sup3;&ETH;&frac34;&ETH;&raquo;&ETH;&frac34;&ETH;&sup2;&ETH;&frac12;&Ntilde;� &ETH;&sup3;&Ntilde;�&Ntilde;�&ETH;&iquest;&Ntilde;� &ETH;&acute;&ETH;&raquo;&Ntilde;� &ETH;&sup2;&Ntilde;�&Ntilde;�&Ntilde;� 3D &ETH;&frac34;&ETH;&plusmn;'&Ntilde;�&ETH;&ordm;&Ntilde;�&Ntilde;�&ETH;&sup2;
+                // Створюємо головну групу для всіх 3D об'єктів
                 mainContainer = new THREE.Group();
 
-                // &ETH;�&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &ETH;&frac12;&ETH;&deg;&ETH;&middot;&ETH;&sup2; &Ntilde;�&ETH;&deg;&ETH;&sup1;&ETH;&raquo;&Ntilde;�&ETH;&sup2; .patt. &ETH;�&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &ETH;&middot;&ETH;&deg;&ETH;&iquest;&ETH;&frac34;&ETH;&sup2;&ETH;&frac12;&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&sup2; &ETH;&iquest;&ETH;&frac34;&Ntilde;�&Ntilde;�&ETH;&acute;&ETH;&ordm;&Ntilde;� &ETH;&acute;&ETH;&frac34;&ETH;&acute;&ETH;&deg;&ETH;&sup2;&ETH;&deg;&ETH;&frac12;&ETH;&frac12;&Ntilde;� &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&micro;&Ntilde;�&Ntilde;�&ETH;&sup2;
-                // &Ntilde;�&ETH;&ordm;&Ntilde;�&ETH;&frac34; &ETH;&middot;&ETH;&deg;&ETH;&frac14;&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;� .patt &ETH;&plusmn;&Ntilde;�&ETH;&raquo;&ETH;&frac34; &ETH;&acute;&ETH;&frac34;&ETH;&acute;&ETH;&deg;&ETH;&frac12;&ETH;&frac34; &ETH;&plusmn;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&frac34;&ETH;&acute;, &ETH;&frac12;&ETH;&deg; &ETH;&sup1;&ETH;&frac34;&ETH;&sup3;&ETH;&frac34; &ETH;&frac14;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&micro; &ETH;&sup2; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &ETH;&acute;&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&iquest;&ETH;&frac34;&Ntilde;�&ETH;&frac34;&ETH;&para;&ETH;&frac12;&Ntilde;�&ETH;&sup1; &Ntilde;�&Ntilde;�&ETH;&acute;&ETH;&frac34;&ETH;&ordm;
-                const patternNames = [&quot;&quot; ,&quot;&quot; ,&quot;&quot;];
-                // &ETH;�&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &ETH;&plusmn;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&frac34;&ETH;&acute;&Ntilde;�&ETH;&sup2;, &ETH;&middot;&ETH;&deg;&ETH;&iquest;&ETH;&frac34;&ETH;&sup2;&ETH;&frac12;&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&frac34;&ETH;&acute;&ETH;&frac12;&ETH;&frac34;&Ntilde;�&ETH;&deg;&Ntilde;�&ETH;&frac12;&ETH;&frac34; &ETH;&middot; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2;&ETH;&frac34;&ETH;&frac14; &ETH;&iquest;&ETH;&deg;&Ntilde;�&ETH;&micro;&Ntilde;�&ETH;&frac12;&Ntilde;�&ETH;&sup2;
-                // &Ntilde;�&ETH;&ordm;&Ntilde;�&ETH;&frac34; &ETH;&middot;&ETH;&deg;&ETH;&frac14;&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&plusmn;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&frac34;&ETH;&acute;&Ntilde;� &ETH;&plusmn;&Ntilde;�&ETH;&sup2; &ETH;&acute;&ETH;&frac34;&ETH;&acute;&ETH;&deg;&ETH;&frac12;&ETH;&cedil;&ETH;&sup1; .patt, &ETH;&frac12;&ETH;&deg; &ETH;&sup1;&ETH;&frac34;&ETH;&sup3;&ETH;&frac34; &ETH;&frac14;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&micro; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &ETH;&acute;&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;� -1
+                // Масив назв файлів .patt. Масив заповнюється в порядку додавання маркерів
+                // якщо замість .patt було додано баркод, на його місце в масив додається порожній рядок
+                const patternNames = ["" ,"" ,""];
+                // Масив баркодів, заповнюється одночасно з масивом патернів
+                // якщо замість баркоду був доданий .patt, на його місце масив додається -1
                 const patternBarcode = [3 ,2 ,1];
-                // &ETH;�&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &Ntilde;�&ETH;&cedil;&ETH;&iquest;&Ntilde;�&ETH;&sup2; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;�&Ntilde;� &ETH;&ordm;&ETH;&frac34;&ETH;&para;&ETH;&frac12;&ETH;&frac34;&ETH;&sup3;&ETH;&frac34; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&micro;&Ntilde;�&ETH;&deg;, &ETH;&middot;&ETH;&deg;&ETH;&iquest;&ETH;&frac34;&ETH;&sup2;&ETH;&frac12;&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&middot;&ETH;&frac12;&ETH;&deg;&Ntilde;�&ETH;&micro;&ETH;&frac12;&ETH;&frac12;&Ntilde;�&ETH;&frac14;&ETH;&cedil;: &ETH;&middot;&ETH;&frac34;&ETH;&plusmn;&Ntilde;�&ETH;&deg;&ETH;&para;&ETH;&micro;&ETH;&frac12;&ETH;&frac12;&Ntilde;�, &ETH;&frac14;&ETH;&frac34;&ETH;&acute;&ETH;&micro;&ETH;&raquo;&Ntilde;�, &ETH;&sup2;&Ntilde;�&ETH;&acute;&ETH;&micro;&ETH;&frac34;
-                const modes = [&quot;image&quot; ,&quot;image&quot; ,&quot;image&quot;];
-                // &ETH;�&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &Ntilde;�&ETH;&deg;&ETH;&sup1;&ETH;&raquo;&Ntilde;�&ETH;&sup2; &ETH;&frac14;&ETH;&frac34;&ETH;&acute;&ETH;&micro;&ETH;&raquo;&ETH;&micro;&ETH;&sup1;, &Ntilde;�&ETH;&ordm;&Ntilde;�&ETH;&frac34; &ETH;&frac12;&ETH;&micro;&ETH;&frac14;&ETH;&deg;&Ntilde;� &ETH;&frac14;&ETH;&frac34;&ETH;&acute;&ETH;&micro;&ETH;&raquo;&Ntilde;� &ETH;&plusmn;&Ntilde;�&ETH;&acute;&ETH;&micro; &ETH;&acute;&ETH;&frac34;&ETH;&acute;&ETH;&deg;&ETH;&frac12;&ETH;&frac34; &ETH;&iquest;&ETH;&frac34;&Ntilde;�&ETH;&frac34;&ETH;&para;&ETH;&frac12;&Ntilde;�&ETH;&sup1; &Ntilde;�&Ntilde;�&ETH;&acute;&ETH;&frac34;&ETH;&ordm;
-                const modelFiles = [&quot;&quot; ,&quot;&quot; ,&quot;&quot;];
-                // &ETH;�&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &Ntilde;�&ETH;&deg;&ETH;&sup1;&ETH;&raquo;&Ntilde;�&ETH;&sup2; &ETH;&middot;&ETH;&frac34;&ETH;&plusmn;&Ntilde;�&ETH;&deg;&ETH;&para;&ETH;&micro;&ETH;&frac12;&Ntilde;�, &Ntilde;�&ETH;&ordm;&Ntilde;�&ETH;&frac34; &ETH;&frac12;&ETH;&micro;&ETH;&frac14;&ETH;&deg;&Ntilde;� &ETH;&middot;&ETH;&frac34;&ETH;&plusmn;&Ntilde;�&ETH;&deg;&ETH;&para;&ETH;&micro;&ETH;&frac12;&ETH;&frac12;&Ntilde;� &ETH;&plusmn;&Ntilde;�&ETH;&acute;&ETH;&micro; &ETH;&acute;&ETH;&frac34;&ETH;&acute;&ETH;&deg;&ETH;&frac12;&ETH;&frac34; &Ntilde;�&ETH;&deg;&ETH;&ordm;&ETH;&frac34;&ETH;&para; &ETH;&iquest;&ETH;&frac34;&Ntilde;�&ETH;&frac34;&ETH;&para;&ETH;&frac12;&Ntilde;�&ETH;&sup1; &Ntilde;�&Ntilde;�&ETH;&acute;&ETH;&frac34;&ETH;&ordm;
-                const imageFiles = [&quot;device.jpg&quot; ,&quot;device creator.jpg&quot; ,&quot;booklet author.jpg&quot;];
-                // &ETH;�&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &Ntilde;�&ETH;&deg;&ETH;&sup1;&ETH;&raquo;&Ntilde;�&ETH;&sup2; &ETH;&sup2;&Ntilde;�&ETH;&acute;&ETH;&micro;&ETH;&frac34;, &Ntilde;�&ETH;&ordm;&Ntilde;�&ETH;&frac34; &ETH;&frac12;&ETH;&micro;&ETH;&frac14;&ETH;&deg;&Ntilde;� &ETH;&sup2;&Ntilde;�&ETH;&acute;&ETH;&micro;&ETH;&frac34; &ETH;&plusmn;&Ntilde;�&ETH;&acute;&ETH;&micro; &Ntilde;�&ETH;&micro; &ETH;&frac34;&ETH;&acute;&ETH;&cedil;&ETH;&frac12; &ETH;&iquest;&ETH;&frac34;&Ntilde;�&ETH;&frac34;&ETH;&para;&ETH;&frac12;&Ntilde;�&ETH;&sup1; &Ntilde;�&Ntilde;�&ETH;&acute;&ETH;&frac34;&ETH;&ordm;
-                const videoFiles = [&quot;&quot; ,&quot;&quot; ,&quot;&quot;];
-                // &ETH;�&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &Ntilde;�&ETH;&deg;&ETH;&sup1;&ETH;&raquo;&Ntilde;�&ETH;&sup2; &ETH;&deg;&Ntilde;�&ETH;&acute;&Ntilde;�&ETH;&frac34;, &Ntilde;�&ETH;&ordm;&Ntilde;�&ETH;&frac34; &ETH;&frac12;&ETH;&micro;&ETH;&frac14;&ETH;&deg;&Ntilde;� &ETH;&deg;&Ntilde;�&ETH;&acute;&Ntilde;�&ETH;&frac34; &ETH;&plusmn;&Ntilde;�&ETH;&acute;&ETH;&micro; &Ntilde;�&ETH;&deg;&ETH;&ordm; &Ntilde;�&ETH;&deg;&ETH;&frac14;&ETH;&frac34; &ETH;&iquest;&ETH;&frac34;&Ntilde;�&ETH;&frac34;&ETH;&para;&ETH;&frac12;&Ntilde;�&ETH;&sup1; &Ntilde;�&Ntilde;�&ETH;&acute;&ETH;&frac34;&ETH;&ordm;
-                const audioFiles = [&quot;device audio.mp3&quot; ,&quot;device creator audio.mp3&quot; ,&quot;booklet author audio.mp3&quot;];
-                // &ETH;�&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &ETH;&frac34;&ETH;&iquest;&Ntilde;�&Ntilde;�&ETH;&sup1; &ETH;&iquest;&ETH;&frac34;&ETH;&sup2;&Ntilde;�&ETH;&frac34;&Ntilde;�&Ntilde;� &ETH;&deg;&Ntilde;�&ETH;&acute;&Ntilde;�&ETH;&frac34; &Ntilde;�&ETH;&deg; &ETH;&sup2;&Ntilde;�&ETH;&acute;&ETH;&micro;&ETH;&frac34; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;�&Ntilde;�, &ETH;&iquest;&ETH;&frac34; &ETH;&acute;&ETH;&micro;&Ntilde;�&ETH;&frac34;&ETH;&raquo;&Ntilde;�&Ntilde;� &ETH;&acute;&ETH;&raquo;&Ntilde;� &ETH;&sup2;&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&plusmn;&Ntilde;�&ETH;&acute;&ETH;&micro; false
-                const repeatOptions = [&quot;false&quot; ,&quot;false&quot; ,&quot;false&quot;];
+                // Масив типів контенту кожного маркера, заповнюється значеннями: зображення, модель, відео
+                const modes = ["image" ,"image" ,"image"];
+                // Масив файлів моделей, якщо немає моделі буде додано порожній рядок
+                const modelFiles = ["" ,"" ,""];
+                // Масив файлів зображень, якщо немає зображення буде додано також порожній рядок
+                const imageFiles = ["device.jpg" ,"device creator.jpg" ,"booklet author.jpg"];
+                // Масив файлів відео, якщо немає відео буде ще один порожній рядок
+                const videoFiles = ["" ,"" ,""];
+                // Масив файлів аудіо, якщо немає аудіо буде так само порожній рядок
+                const audioFiles = ["device audio.mp3" ,"device creator audio.mp3" ,"booklet author audio.mp3"];
+                // Масив опцій повтору аудіо та відео контенту, по дефолту для всіх буде false
+                const repeatOptions = ["false" ,"false" ,"false"];
   
-                // &ETH;&iexcl;&Ntilde;�&ETH;&sup2;&ETH;&frac34;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &ETH;&acute;&ETH;&raquo;&Ntilde;� &ETH;&sup2;&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&micro;&Ntilde;�&Ntilde;�&ETH;&sup2;
+                // Створюємо масив для всіх маркерів
                 const markerRoots = [];
-                for (let i = 0; i &lt; 3; i++) {
+                for (let i = 0; i < 3; i++) {
                     markerRoots[i] = new THREE.Group();
                 }
   
-                // &ETH;�&Ntilde;�&ETH;&frac34;&Ntilde;�&ETH;&frac34;&ETH;&acute;&ETH;&cedil;&ETH;&frac14;&ETH;&frac34; &ETH;&iquest;&ETH;&frac34; &ETH;&ordm;&ETH;&frac34;&ETH;&para;&ETH;&frac12;&ETH;&frac34;&ETH;&frac14;&Ntilde;� &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&micro;&Ntilde;�&Ntilde;� &ETH;&middot; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2;&Ntilde;� &Ntilde;� &ETH;&acute;&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&sup1;&ETH;&frac34;&ETH;&sup3;&ETH;&frac34; &ETH;&sup2; &ETH;&sup3;&ETH;&frac34;&ETH;&raquo;&ETH;&frac34;&ETH;&sup2;&ETH;&frac12;&ETH;&cedil;&ETH;&sup1; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&sup1;&ETH;&frac12;&ETH;&micro;&Ntilde;�
-                for (let i = 0; i &lt; 3; i++) {
+                // Проходимо по кожному маркеру з масиву і додаємо його в головний контейнер
+                for (let i = 0; i < 3; i++) {
                     mainContainer.add(markerRoots[i]);
 
-                    // &ETH;&macr;&ETH;&ordm;&Ntilde;�&ETH;&frac34; &ETH;&iquest;&ETH;&frac34;&Ntilde;�&ETH;&frac34;&Ntilde;�&ETH;&frac12;&ETH;&cedil;&ETH;&sup1; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&micro;&Ntilde;� &acirc;�� &Ntilde;�&ETH;&micro; &ETH;&plusmn;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&frac34;&ETH;&acute;, &Ntilde;�&Ntilde;�&ETH;&sup2;&ETH;&frac34;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; AR &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&Ntilde;�&ETH;&frac34;&ETH;&raquo;&ETH;&micro;&Ntilde;� &ETH;&iquest;&Ntilde;�&ETH;&acute; &ETH;&plusmn;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&frac34;&ETH;&acute;
-                    // &Ntilde;�&ETH;&ordm;&Ntilde;�&ETH;&frac34; &ETH;&iquest;&ETH;&frac34;&Ntilde;�&ETH;&frac34;&Ntilde;�&ETH;&frac12;&ETH;&cedil;&ETH;&sup1; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&micro;&Ntilde;� &Ntilde;�&ETH;&micro; &ETH;&iquest;&ETH;&deg;&Ntilde;�&ETH;&micro;&Ntilde;�&ETH;&frac12;, &ETH;&deg;&ETH;&frac12;&ETH;&deg;&ETH;&raquo;&ETH;&frac34;&ETH;&sup3;&Ntilde;�&Ntilde;�&ETH;&frac12;&ETH;&frac34; &Ntilde;�&Ntilde;�&ETH;&sup2;&ETH;&frac34;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; AR &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&Ntilde;�&ETH;&frac34;&ETH;&raquo;&ETH;&micro;&Ntilde;� &ETH;&iquest;&Ntilde;�&ETH;&acute; &ETH;&iquest;&ETH;&deg;&Ntilde;�&ETH;&micro;&Ntilde;�&ETH;&frac12;
+                    // Якщо поточний маркер – це баркод, створюємо AR контролер під баркод
+                    // якщо поточний маркер це патерн, аналогічно створюємо AR контролер під патерн
                     if (patternBarcode[i] === -1) {
                         let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoots[i], {
                             type: 'pattern', patternUrl: patternNames[i], size: 1 + (i + 1) / patternIdOffset
@@ -203,93 +189,93 @@
                         patternsID.push(patternNames[i]);
                     } else {
                         let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoots[i], {
-                            type: &quot;barcode&quot;, barcodeValue: patternBarcode[i],
+                            type: "barcode", barcodeValue: patternBarcode[i],
                         })
                         barcodesID.push(patternBarcode[i]);
                     }
 
-                    // &ETH;�&ETH;&cedil;&ETH;&ordm;&ETH;&frac34;&Ntilde;�&ETH;&cedil;&Ntilde;�&Ntilde;�&ETH;&frac34;&ETH;&sup2;&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; switch &ETH;&acute;&ETH;&raquo;&Ntilde;� &Ntilde;�&ETH;&frac34;&ETH;&plusmn;&ETH;&frac34;&Ntilde;�&ETH;&cedil; &ETH;&middot; &ETH;&ordm;&ETH;&frac34;&ETH;&para;&ETH;&frac12;&ETH;&cedil;&ETH;&frac14; &ETH;&frac34;&ETH;&ordm;&Ntilde;�&ETH;&micro;&ETH;&frac14;&ETH;&cedil;&ETH;&frac14; &ETH;&sup2;&ETH;&cedil;&ETH;&iquest;&ETH;&deg;&ETH;&acute;&ETH;&ordm;&ETH;&frac34;&ETH;&frac14; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;�&Ntilde;�
+                    // Використовуємо switch для роботи з кожним окремим випадком контенту
                     switch (modes[i]) {
-                        // &ETH;&macr;&ETH;&ordm;&Ntilde;�&ETH;&frac34; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;� &ETH;&iquest;&Ntilde;�&ETH;&acute; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&micro;&Ntilde;� &Ntilde;�&ETH;&micro; &ETH;&frac14;&ETH;&frac34;&ETH;&acute;&ETH;&micro;&ETH;&raquo;&Ntilde;�
+                        // Якщо контент під маркер це модель
                         case 'model':
                             function onProgress(xhr) { console.log((xhr.loaded / xhr.total * 100) + '% loaded'); }
                             function onError(xhr) { console.log('An error happened'); }
 
-                            contentPromises.push(new Promise((resolve) =&gt; {
-                                const test = new THREE.GLTF2Loader().load(`${modelFiles[i]}`, (response) =&gt; {
+                            contentPromises.push(new Promise((resolve) => {
+                                const test = new THREE.GLTF2Loader().load(`${modelFiles[i]}`, (response) => {
                                     const scene = response.scene;
                                     const object = scene.children[0];
-                                    // &ETH;�&ETH;&frac12;&ETH;&frac34;&ETH;&acute;&Ntilde;� &ETH;&frac14;&ETH;&frac34;&ETH;&acute;&ETH;&micro;&ETH;&raquo;&Ntilde;� &ETH;&frac12;&ETH;&micro; &ETH;&frac14;&ETH;&frac34;&ETH;&para;&ETH;&frac12;&ETH;&deg; &ETH;&iquest;&ETH;&frac34;&ETH;&plusmn;&ETH;&deg;&Ntilde;�&ETH;&cedil;&Ntilde;�&ETH;&cedil; &ETH;&middot; &ETH;&ordm;&Ntilde;�&ETH;&raquo;&Ntilde;�&ETH;&ordm;&ETH;&frac34;&Ntilde;� &ETH;&iquest;&Ntilde;�&ETH;&cedil;&Ntilde;�&ETH;&cedil;&ETH;&frac12;, &ETH;&frac12;&ETH;&deg;&ETH;&sup1;&Ntilde;�&ETH;&deg;&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&micro; &ETH;&sup2;&ETH;&deg;&Ntilde;�&Ntilde;�&ETH;&frac34; &ETH;&middot;&ETH;&plusmn;&Ntilde;�&ETH;&raquo;&Ntilde;�&Ntilde;�&ETH;&cedil;&Ntilde;�&ETH;&cedil; &Ntilde;�&ETH;&cedil; &ETH;&middot;&ETH;&frac14;&ETH;&micro;&ETH;&frac12;&Ntilde;�&ETH;&cedil;&Ntilde;�&ETH;&cedil; &Ntilde;� 100 &Ntilde;�&ETH;&deg;&ETH;&middot;&Ntilde;�&ETH;&sup2;.
-                                    // &ETH;&sect;&ETH;&cedil;&Ntilde;�&ETH;&deg;&ETH;&sup1;&Ntilde;�&ETH;&micro;: https://threejs.org/docs/index.html#manual/en/introduction/Loading-3D-models
-                                    // &ETH;&cent;&Ntilde;�&Ntilde;� &ETH;&frac14;&ETH;&cedil; &ETH;&middot;&ETH;&frac14;&ETH;&micro;&ETH;&frac12;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &Ntilde;�&Ntilde;�, &Ntilde;�&ETH;&frac34;&ETH;&plusmn; &Ntilde;�&ETH;&frac34;&Ntilde;�&ETH;&frac12;&ETH;&frac34; &ETH;&iquest;&ETH;&frac34;&ETH;&plusmn;&ETH;&deg;&Ntilde;�&ETH;&cedil;&Ntilde;�&ETH;&cedil; &Ntilde;�&Ntilde;� &ETH;&frac12;&ETH;&deg; &Ntilde;�&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;�. &ETH;�&ETH;&cedil; &ETH;&frac14;&ETH;&frac34;&ETH;&para;&ETH;&micro;&Ntilde;�&ETH;&micro; &ETH;&sup2;&ETH;&cedil;&ETH;&acute;&ETH;&deg;&ETH;&raquo;&ETH;&cedil;&Ntilde;�&ETH;&cedil; &Ntilde;�&Ntilde;� &Ntilde;�&ETH;&ordm;&ETH;&deg;&ETH;&raquo;&Ntilde;�, &Ntilde;�&ETH;&ordm;&Ntilde;�&ETH;&frac34; &ETH;&iquest;&ETH;&frac34;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&plusmn;&ETH;&frac12;&ETH;&frac34;
+                                    // Іноді модель не можна побачити з кількох причин, найчастіше варто збільшити чи зменшити у 100 разів.
+                                    // Читайте: https://threejs.org/docs/index.html#manual/en/introduction/Loading-3D-models
+                                    // Тут ми зменшуємо її, щоб точно побачити її на сцені. Ви можете видалити цю шкалу, якщо потрібно
                                     object.scale.set(0.01, 0.01, 0.01);
-                                    // &ETH;�&ETH;&cedil; &ETH;&frac14;&ETH;&frac34;&ETH;&para;&ETH;&micro;&Ntilde;�&ETH;&micro; &Ntilde;�&ETH;&deg;&ETH;&frac14;&ETH;&frac34;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&sup1;&ETH;&frac12;&ETH;&frac34; &ETH;&middot;&ETH;&frac14;&Ntilde;�&ETH;&frac12;&ETH;&cedil;&Ntilde;�&ETH;&cedil; &ETH;&iquest;&ETH;&frac34;&ETH;&sup2;&ETH;&frac34;&Ntilde;�&ETH;&frac34;&Ntilde;� &ETH;&deg;&ETH;&plusmn;&ETH;&frac34; &ETH;&iquest;&ETH;&frac34;&ETH;&middot;&ETH;&cedil;&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&frac14;&ETH;&frac34;&ETH;&acute;&ETH;&micro;&ETH;&raquo;&Ntilde;�
+                                    // Ви можете самостійно змінити поворот або позицію моделі
                                     // object.position.set(0, Math.PI / 2, Math.PI / 4);
                                     // object.rotation.set(0, Math.PI / 2, Math.PI / 4);
-                                    // &ETH;�&ETH;&frac34;&ETH;&acute;&ETH;&deg;&ETH;&sup2;&ETH;&deg;&ETH;&frac12;&ETH;&frac12;&Ntilde;� &ETH;&frac12;&ETH;&deg;&Ntilde;�&ETH;&frac34;&Ntilde;� &ETH;&frac14;&ETH;&frac34;&ETH;&acute;&ETH;&micro;&ETH;&raquo;&Ntilde;� &ETH;&acute;&ETH;&frac34; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&sup1;&ETH;&frac12;&ETH;&micro;&Ntilde;�&ETH;&deg; &ETH;&sup3;&Ntilde;�&Ntilde;�&ETH;&iquest;&ETH;&cedil; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&micro;&Ntilde;�&Ntilde;�&ETH;&sup2;
+                                    // Додавання нашої моделі до контейнера групи маркерів
                                     markerRoots[i].add(object);
                                     resolve(modelFiles[i])
                                 }, onProgress, onError)
-                            }).then((file) =&gt; {
+                            }).then((file) => {
                                 console.log(`File ${file} loaded`)
                             }))
                             break;
-                        // &ETH;&macr;&ETH;&ordm;&Ntilde;�&ETH;&frac34; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;� &ETH;&iquest;&Ntilde;�&ETH;&acute; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&micro;&Ntilde;� &Ntilde;�&ETH;&micro; &ETH;&middot;&ETH;&frac34;&ETH;&plusmn;&Ntilde;�&ETH;&deg;&ETH;&para;&ETH;&micro;&ETH;&frac12;&ETH;&frac12;&Ntilde;�
+                        // Якщо контент під маркер це зображення
                         case 'image':
                             if (imageFiles[i]) {
-                                contentPromises.push(new Promise((resolve) =&gt; {
-                                    // &ETH;�&ETH;&deg;&ETH;&sup2;&ETH;&deg;&ETH;&frac12;&Ntilde;�&ETH;&deg;&ETH;&para;&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&middot;&ETH;&frac34;&ETH;&plusmn;&Ntilde;�&ETH;&deg;&ETH;&para;&ETH;&micro;&ETH;&frac12;&ETH;&frac12;&Ntilde;�
+                                contentPromises.push(new Promise((resolve) => {
+                                    // Завантажуємо зображення
                                     let loader = new THREE.TextureLoader();
-                                    loader.load(`${imageFiles[i]}`, (texture) =&gt; {
+                                    loader.load(`${imageFiles[i]}`, (texture) => {
                                         let geometry1, ratio = texture.image.naturalWidth / texture.image.naturalHeight;
-                                        if (texture.image.naturalHeight &lt; texture.image.naturalWidth) {
+                                        if (texture.image.naturalHeight < texture.image.naturalWidth) {
                                             geometry1 = new THREE.PlaneBufferGeometry(ratio, 1);
                                         } else {
                                             geometry1 = new THREE.PlaneBufferGeometry(1, 1 / ratio);
                                         }
                                         let material1 = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
                                         mesh1 = new THREE.Mesh(geometry1, material1);
-                                        // &ETH;�&ETH;&frac34;&ETH;&sup2;&ETH;&micro;&Ntilde;�&Ntilde;�&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&iquest;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&ETH;&cedil;&ETH;&frac12;&Ntilde;�
+                                        // Повертаємо площину
                                         mesh1.rotation.x = -Math.PI / 2;
-                                        // &ETH;�&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&iquest;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&ETH;&cedil;&ETH;&frac12;&Ntilde;� &Ntilde;� &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&sup1;&ETH;&frac12;&ETH;&micro;&Ntilde;�
+                                        // Додаємо площину у контейнер
                                         markerRoots[i].add(mesh1);
                                         resolve(imageFiles[i])
                                     });
-                                }).then(image =&gt; {
+                                }).then(image => {
                                     console.log(`File ${image} loaded`)
                                 }))
                             }
                             break;
-                        // &ETH;&macr;&ETH;&ordm;&Ntilde;�&ETH;&frac34; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;� &ETH;&iquest;&Ntilde;�&ETH;&acute; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&ordm;&ETH;&micro;&Ntilde;� - &Ntilde;�&ETH;&micro; &ETH;&sup2;&Ntilde;�&ETH;&acute;&ETH;&micro;&ETH;&frac34;
+                        // Якщо контент під маркер - це відео
                         case 'video':
-                            // &ETH;�&ETH;&sup3;&ETH;&frac34;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&iquest;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&ETH;&cedil;&ETH;&frac12;&Ntilde;� &ETH;&iquest;&Ntilde;�&ETH;&acute; &ETH;&sup2;&Ntilde;�&ETH;&acute;&ETH;&micro;&ETH;&frac34;
+                            // Оголошуємо площину під відео
                             let geometry2 = new THREE.PlaneBufferGeometry(1.6 , 0.9);
-                            // &ETH;�&ETH;&sup3;&ETH;&frac34;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &Ntilde;�&ETH;&deg; &ETH;&middot;&ETH;&deg;&ETH;&sup2;&ETH;&deg;&ETH;&frac12;&Ntilde;�&ETH;&deg;&ETH;&para;&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&sup2;&Ntilde;�&ETH;&acute;&ETH;&micro;&ETH;&frac34;
+                            // Оголошуємо та завантажуємо відео
                             let video = document.createElement('video');
                             video.src = `${videoFiles[i]}`;
                             video.playsInline = true;
-                            // &ETH;�&Ntilde;�&Ntilde;�&ETH;&deg;&ETH;&frac12;&ETH;&frac34;&ETH;&sup2;&ETH;&raquo;&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&sup2;&Ntilde;�&ETH;&acute;&ETH;&micro;&ETH;&frac34; &ETH;&frac12;&ETH;&deg; &ETH;&deg;&ETH;&sup2;&Ntilde;�&ETH;&frac34;&ETH;&iquest;&ETH;&frac34;&ETH;&sup2;&Ntilde;�&ETH;&frac34;&Ntilde;� &ETH;&middot;&ETH;&deg;&ETH;&raquo;&ETH;&micro;&ETH;&para;&ETH;&frac12;&ETH;&frac34; &ETH;&sup2;&Ntilde;�&ETH;&acute; &ETH;&middot;&ETH;&frac12;&ETH;&deg;&Ntilde;�&ETH;&micro;&ETH;&frac12;&ETH;&frac12;&Ntilde;� &Ntilde;� &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2;&Ntilde;�
+                            // Встановлюємо відео на автоповтор залежно від значення у масиві
                             if (repeatOptions[i]) {
-                                video.addEventListener('ended', () =&gt; {
+                                video.addEventListener('ended', () => {
                                     video.play();
                                 })
                             }
-                            // &ETH;�&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&sup2;&Ntilde;�&ETH;&acute;&ETH;&micro;&ETH;&frac34; &ETH;&acute;&ETH;&frac34; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2;&Ntilde;� &ETH;&deg;&Ntilde;�&ETH;&acute;&Ntilde;�&ETH;&frac34; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;�&Ntilde;�
+                            // Додаємо відео до масиву аудіо контенту
                             if (patternBarcode[i] === -1) {
                                 patternsSound.set(i, video);
                             } else {
                                 barcodesSound.set(patternBarcode[i], video);
                             }
-                            // &ETH;�&ETH;&micro;&Ntilde;�&ETH;&micro;&ETH;&frac12;&ETH;&deg;&ETH;&iquest;&Ntilde;�&ETH;&deg;&ETH;&sup2;&ETH;&raquo;&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &Ntilde;�&ETH;&micro;&ETH;&ordm;&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&middot; &ETH;&sup2;&Ntilde;�&ETH;&acute;&ETH;&micro;&ETH;&frac34; &ETH;&frac12;&ETH;&deg; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&micro;&Ntilde;�&Ntilde;�&ETH;&deg;&ETH;&raquo; &ETH;&acute;&ETH;&raquo;&Ntilde;� &ETH;&iquest;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&ETH;&cedil;&ETH;&frac12;&ETH;&cedil;.
+                            // Перенаправляємо текстуру з відео на матеріал для площини.
                             let texture2 = new THREE.VideoTexture(video);
                             texture2.minFilter = THREE.LinearFilter;
                             texture2.magFilter = THREE.LinearFilter;
                             texture2.format = THREE.RGBFormat;
                             let material2 = new THREE.MeshBasicMaterial({ map: texture2 });
                             mesh2 = new THREE.Mesh(geometry2, material2);
-                            // &ETH;�&ETH;&frac34;&ETH;&sup2;&ETH;&micro;&Ntilde;�&Ntilde;�&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&iquest;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&ETH;&cedil;&ETH;&frac12;&Ntilde;�
+                            // Повертаємо площину
                             mesh2.rotation.x = -Math.PI / 2;
-                            // &ETH;�&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&iquest;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&ETH;&cedil;&ETH;&frac12;&Ntilde;� &Ntilde;� &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&sup1;&ETH;&frac12;&ETH;&micro;&Ntilde;�
+                            // Додаємо площину у контейнер
                             markerRoots[i].add(mesh2);
                             break;
                         case 'controller':
@@ -303,25 +289,25 @@
                             markerRoots[i].add(controller);
                             break;
                         default:
-                            // &ETH;&macr;&ETH;&ordm;&Ntilde;�&ETH;&frac34; &ETH;&para;&ETH;&frac34;&ETH;&acute;&ETH;&frac12;&ETH;&frac34;&ETH;&sup3;&ETH;&frac34; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;�&Ntilde;� &ETH;&frac12;&ETH;&micro; &ETH;&acute;&ETH;&frac34;&ETH;&acute;&ETH;&deg;&ETH;&frac12;&ETH;&frac34;, &ETH;&acute;&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&plusmn;&Ntilde;�&ETH;&raquo;&Ntilde;� &ETH;&iquest;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&ETH;&cedil;&ETH;&frac12;&Ntilde;�.
+                            // Якщо жодного контенту не додано, додаємо білу площину.
                             mesh11 = new THREE.Mesh(new THREE.PlaneBufferGeometry(1, 1),
                                 new THREE.MeshBasicMaterial({ color: '#fff' }));
-                            // &ETH;�&ETH;&frac34;&ETH;&sup2;&ETH;&micro;&Ntilde;�&Ntilde;�&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&iquest;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&ETH;&cedil;&ETH;&frac12;&Ntilde;�
+                            // Повертаємо площину
                             mesh11.rotation.x = -Math.PI / 2;
-                            // &ETH;�&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&iquest;&ETH;&raquo;&ETH;&frac34;&Ntilde;�&ETH;&cedil;&ETH;&frac12;&Ntilde;� &Ntilde;� &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&sup1;&ETH;&frac12;&ETH;&micro;&Ntilde;�
+                            // Додаємо площину у контейнер
                             markerRoots[i].add(mesh11);
                             break;
                     }
 
-                    // &ETH;&macr;&ETH;&ordm;&Ntilde;�&ETH;&frac34; &Ntilde;� &ETH;&deg;&Ntilde;�&ETH;&acute;&Ntilde;�&ETH;&frac34; &Ntilde;�&ETH;&deg;&ETH;&sup1;&ETH;&raquo;&ETH;&cedil;, &ETH;&frac12;&ETH;&deg;&ETH;&raquo;&ETH;&deg;&Ntilde;�&Ntilde;�&ETH;&frac34;&ETH;&sup2;&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &Ntilde;�&Ntilde;� &Ntilde;� &ETH;&acute;&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&sup2; &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2; &ETH;&deg;&Ntilde;�&ETH;&acute;&Ntilde;�&ETH;&frac34; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;�&Ntilde;�.
+                    // Якщо є аудіо файли, налаштовуємо їх і додаємо в масив аудіо контенту.
                     if (audioFiles[i]) {
-                        contentPromises.push(new Promise((resolve, reject) =&gt; {
+                        contentPromises.push(new Promise((resolve, reject) => {
                             audioLoader.load(`${audioFiles[i]}`, function (buffer) {
-                                // &ETH;&iexcl;&Ntilde;�&ETH;&sup2;&ETH;&frac34;&Ntilde;�&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&deg;&Ntilde;�&ETH;&acute;&Ntilde;�&ETH;&frac34; &ETH;&acute;&ETH;&para;&ETH;&micro;&Ntilde;�&ETH;&micro;&ETH;&raquo;&ETH;&frac34;
+                                // Створюємо аудіо джерело
                                 let sound = new THREE.Audio(listener);
                                 sound.name = `${audioFiles[i]}`;
                                 sound.setBuffer(buffer);
-                                // &ETH;�&Ntilde;�&Ntilde;�&ETH;&deg;&ETH;&frac12;&ETH;&frac34;&ETH;&sup2;&ETH;&raquo;&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&sup2;&Ntilde;�&ETH;&acute;&ETH;&micro;&ETH;&frac34; &ETH;&frac12;&ETH;&deg; &ETH;&deg;&ETH;&sup2;&Ntilde;�&ETH;&frac34;&ETH;&iquest;&ETH;&frac34;&ETH;&sup2;&Ntilde;�&ETH;&frac34;&Ntilde;� &ETH;&middot;&ETH;&deg;&ETH;&raquo;&ETH;&micro;&ETH;&para;&ETH;&frac12;&ETH;&frac34; &ETH;&sup2;&Ntilde;�&ETH;&acute; &ETH;&middot;&ETH;&frac12;&ETH;&deg;&Ntilde;�&ETH;&micro;&ETH;&frac12;&ETH;&frac12;&Ntilde;� &Ntilde;� &ETH;&frac14;&ETH;&deg;&Ntilde;�&ETH;&cedil;&ETH;&sup2;&Ntilde;�
+                                // Встановлюємо відео на автоповтор залежно від значення у масиві
                                 if (repeatOptions[i]) {
                                     sound.setLoop(true);
                                 }
@@ -332,7 +318,7 @@
                                 }
                                 resolve(sound)
                             });
-                        }).then((sound) =&gt; {
+                        }).then((sound) => {
                             sound.play()
                             sound.stop()
                             console.log(`File ${sound.name} loaded`)
@@ -340,22 +326,22 @@
                     }
                 }
 
-                // &ETH;&yen;&ETH;&frac34;&ETH;&sup2;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&raquo;&ETH;&frac34;&ETH;&deg;&ETH;&acute;&ETH;&micro;&Ntilde;� &ETH;&iquest;&Ntilde;�&Ntilde;�&ETH;&raquo;&Ntilde;� &ETH;&middot;&ETH;&deg;&ETH;&sup2;&ETH;&deg;&ETH;&frac12;&Ntilde;�&ETH;&deg;&ETH;&para;&ETH;&micro;&ETH;&frac12;&ETH;&frac12;&Ntilde;� &ETH;&ordm;&ETH;&frac34;&ETH;&frac14;&ETH;&iquest;&ETH;&frac34;&ETH;&frac12;&ETH;&micro;&ETH;&frac12;&Ntilde;�&Ntilde;�&ETH;&sup2;
+                // Ховаємо лоадер після завантаження компонентів
                 Promise.all(contentPromises)
-                    .then(() =&gt; {
+                    .then(() => {
                         console.log('Most of the content loaded')
                         contentInitialized = true;
                         loader.style.opacity = '0';
                     });
 
-                // &ETH;�&ETH;&frac34;&ETH;&acute;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&sup3;&ETH;&frac34;&ETH;&raquo;&ETH;&frac34;&ETH;&sup2;&ETH;&frac12;&ETH;&cedil;&ETH;&sup1; &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&sup1;&ETH;&frac12;&ETH;&micro;&Ntilde;� &ETH;&frac12;&ETH;&deg; &Ntilde;�&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;�
+                // Додаємо головний контейнер на сцену
                 scene.add(mainContainer);
             }
 
             function checkController() {
                 if (controller) {
-                    mainContainer.traverse((object) =&gt; {
-                        if (object.isMesh &amp;&amp; object !== controller) {
+                    mainContainer.traverse((object) => {
+                        if (object.isMesh && object !== controller) {
                             if (detectCollisionCubes(object, controller)) {
                                 object.material.color.set('red')
                             } else {
@@ -366,7 +352,7 @@
                 }
             }
 
-            // &ETH;&curren;&Ntilde;�&ETH;&frac12;&ETH;&ordm;&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&iquest;&ETH;&frac34;&Ntilde;�&Ntilde;�&ETH;&ordm;&Ntilde;� &ETH;&iquest;&ETH;&micro;&Ntilde;�&ETH;&micro;&Ntilde;�&ETH;&cedil;&ETH;&frac12;&Ntilde;�&ETH;&sup2; &ETH;&frac14;&Ntilde;�&ETH;&para; &ETH;&acute;&ETH;&sup2;&ETH;&frac34;&ETH;&frac14;&ETH;&deg; &ETH;&frac34;&ETH;&plusmn;'&Ntilde;�&ETH;&ordm;&Ntilde;�&ETH;&deg;&ETH;&frac14;&ETH;&cedil; &Ntilde;�&Ntilde;�&ETH;&micro;&ETH;&frac12;&ETH;&cedil;
+            // Функція пошуку перетинів між двома об'єктами сцени
             function detectCollisionCubes(object1, object2) {
                 object1.geometry.computeBoundingBox();
                 object2.geometry.computeBoundingBox();
@@ -382,40 +368,40 @@
                 return box1.intersectsBox(box2);
             };
 
-            // &ETH;�&ETH;&frac12;&ETH;&frac34;&ETH;&sup2;&ETH;&raquo;&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; AR &ETH;&ordm;&ETH;&frac34;&ETH;&frac12;&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;� &ETH;&frac12;&ETH;&deg; &ETH;&ordm;&ETH;&frac34;&ETH;&para;&ETH;&micro;&ETH;&frac12; &ETH;&ordm;&ETH;&deg;&ETH;&acute;&Ntilde;�
+            // Оновлюємо AR контент на кожен кадр
             function update() {
                 if (arToolkitSource.ready !== false) {
                     arToolkitContext.update(arToolkitSource.domElement);
                     if (contentInitialized) {
                         if (barcodesID.length) {
-                            barcodesID.forEach((elem, index) =&gt; {
+                            barcodesID.forEach((elem, index) => {
                                 if (arToolkitContext.arController.barcodeMarkers[elem].inCurrent) {
                                     let sound = barcodesSound.get(elem);
-                                    if (sound &amp;&amp; !sound.isPlaying) sound.play();
+                                    if (sound && !sound.isPlaying) sound.play();
                                 } else {
                                     let sound = barcodesSound.get(elem);
-                                    if (sound &amp;&amp; sound.nodeName === 'VIDEO') {
+                                    if (sound && sound.nodeName === 'VIDEO') {
                                         if (!sound.paused) sound.pause()
                                     }
-                                    if (sound &amp;&amp; sound.isPlaying) sound.stop();
+                                    if (sound && sound.isPlaying) sound.stop();
                                 }
                             })
                         }
                         if (patternsID.length) {
-                            for (let index = 0; index &lt; patternsID.length; index++) {
+                            for (let index = 0; index < patternsID.length; index++) {
                                 if (arToolkitContext.arController.patternMarkers[index].inCurrent) {
                                     let patternID = (arToolkitContext.arController.patternMarkers[index].markerWidth - 1) * patternIdOffset - 1;
                                     patternID = Math.round(patternID)
                                     let sound = patternsSound.get(patternID);
-                                    if (sound &amp;&amp; !sound.isPlaying) sound.play();
+                                    if (sound && !sound.isPlaying) sound.play();
                                 } else {
                                     let patternID = (arToolkitContext.arController.patternMarkers[index].markerWidth - 1) * patternIdOffset - 1;
                                     patternID = Math.round(patternID)
                                     let sound = patternsSound.get(patternID);
-                                    if (sound &amp;&amp; sound.nodeName === 'VIDEO') {
+                                    if (sound && sound.nodeName === 'VIDEO') {
                                         if (!sound.paused) sound.pause()
                                     }
-                                    if (sound &amp;&amp; sound.isPlaying) sound.stop();
+                                    if (sound && sound.isPlaying) sound.stop();
                                 }
                             }
                         }
@@ -423,14 +409,14 @@
                 }
             }
 
-            // &ETH;&nbsp;&ETH;&micro;&ETH;&frac12;&ETH;&acute;&ETH;&micro;&Ntilde;�&Ntilde;�&ETH;&frac14; &Ntilde;�&Ntilde;�&ETH;&micro;&ETH;&frac12;&Ntilde;� &ETH;&frac12;&ETH;&deg; &ETH;&ordm;&ETH;&frac34;&ETH;&para;&ETH;&micro;&ETH;&frac12; &ETH;&ordm;&ETH;&deg;&ETH;&acute;&Ntilde;�
+            // Рендерім сцену на кожен кадр
             function render() {
                 renderer.render(scene, camera);
             }
 
-            // &ETH;�&ETH;&deg;&ETH;&iquest;&Ntilde;�&Ntilde;�&ETH;&ordm;&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &Ntilde;�&ETH;&cedil;&ETH;&ordm;&ETH;&raquo; &ETH;&deg;&ETH;&frac12;&Ntilde;�&ETH;&frac14;&ETH;&deg;&Ntilde;�&Ntilde;�&Ntilde;�
+            // Запускаємо цикл анімації
             function animate(time) {
-                // &ETH;�&Ntilde;�&ETH;&cedil;&ETH;&sup2;'&Ntilde;�&ETH;&middot;&Ntilde;�&Ntilde;�&ETH;&frac14;&ETH;&frac34; &Ntilde;�&ETH;&cedil;&ETH;&ordm;&ETH;&raquo; &ETH;&deg;&ETH;&frac12;&Ntilde;�&ETH;&frac14;&ETH;&deg;&Ntilde;�&Ntilde;�&Ntilde;� &ETH;&acute;&ETH;&frac34; &Ntilde;�&ETH;&micro;&ETH;&frac12;&ETH;&acute;&ETH;&micro;&Ntilde;�&Ntilde;� &ETH;&plusmn;&Ntilde;�&ETH;&deg;&Ntilde;�&ETH;&middot;&ETH;&micro;&Ntilde;�&ETH;&deg;
+                // Прив'язуємо цикл анімації до рендеру браузера
                 requestAnimationFrame(animate);
                 deltaTime = clock.getDelta();
                 totalTime += deltaTime;
@@ -440,16 +426,14 @@
             }
         }
 
-        // &ETH;�&Ntilde;�&ETH;&cedil;&ETH;&plusmn;&ETH;&cedil;&Ntilde;�&ETH;&deg;&Ntilde;�&ETH;&frac14;&ETH;&frac34; &ETH;&plusmn;&ETH;&raquo;&ETH;&frac34;&ETH;&ordm; &ETH;&iquest;&Ntilde;�&Ntilde;�&ETH;&raquo;&Ntilde;� &ETH;&frac12;&ETH;&deg;&Ntilde;�&ETH;&cedil;&Ntilde;�&ETH;&ordm;&ETH;&deg;&ETH;&frac12;&ETH;&frac12;&Ntilde;� &ETH;&frac12;&ETH;&deg; &ETH;&micro;&ETH;&ordm;&Ntilde;�&ETH;&deg;&ETH;&frac12; &ETH;&acute;&ETH;&raquo;&Ntilde;� &ETH;&acute;&ETH;&frac34;&ETH;&middot;&ETH;&sup2;&ETH;&frac34;&ETH;&raquo;&Ntilde;� &ETH;&deg;&Ntilde;�&ETH;&acute;&Ntilde;�&ETH;&frac34; &ETH;&iquest;&Ntilde;�&ETH;&frac34;&ETH;&sup3;&Ntilde;�&ETH;&deg;&ETH;&sup2;&ETH;&deg;&ETH;&frac12;&ETH;&frac12;&Ntilde;� &ETH;&frac12;&ETH;&deg; iOS
-        access.addEventListener('click', () =&gt; {
+        // Прибираємо блок після натискання на екран для дозволу аудіо програвання на iOS
+        access.addEventListener('click', () => {
             initiateExperience();
             document.body.removeChild(access);
             loader.style.display = 'block';
         });
-    &lt;/script&gt;
+    </script>
 
-&lt;/body&gt;
-
-&lt;/html&gt;</pre>
 </body>
+
 </html>
